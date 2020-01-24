@@ -6,7 +6,7 @@
         </head>
         <body>
             <h1>Countdown Clock</h1> 
-            <button onclick="myFunction()">New Countdown</button>
+            <button onclick="main()">New Countdown</button>
            
             <br>
             <br>
@@ -32,36 +32,60 @@
            
             <p id="demo"></p> 
             
-            <script>
-            
-           
-           function myFunction(){
+ <script>
+        class deadline {
+      constructor(date) {
+        this.date = date;
+        this.dayElement = document.getElementById("day");
+        this.hourElement = document.getElementById("hour");
+        this.minuteElement = document.getElementById("minute");
+        this.secondElement = document.getElementById("second");
+      }
 
-            var date = prompt("Please Enter The Date of Your Event")
-                deadline = new Date(date).getTime(); 
-  
-                var x = setInterval(function() { 
-                    
-                var now = new Date().getTime(); 
-                var t = deadline - now; 
-                var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
-                var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-                var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-                var seconds = Math.floor((t % (1000 * 60)) / 1000); 
-                document.getElementById("day").innerHTML =days ; 
-                document.getElementById("hour").innerHTML =hours; 
-                document.getElementById("minute").innerHTML = minutes;  
-                document.getElementById("second").innerHTML =seconds;  
-                if (t < 0) { 
-                        clearInterval(x); 
-                        document.getElementById("demo").innerHTML = "TIME UP"; 
-                        document.getElementById("day").innerHTML ='0'; 
-                        document.getElementById("hour").innerHTML ='0'; 
-                        document.getElementById("minute").innerHTML ='0' ;  
-                        document.getElementById("second").innerHTML = '0'; } 
-                }, 1000); 
-            }
-            
+      timerFunction = () => {
+
+        let now = new Date().getTime();
+        let t = new Date(this.date) - now;
+        let days = Math.floor(t / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((t % (1000 * 60)) / 1000);
+        this.dayElement.innerText = days;
+        this.hourElement.innerText = hours;
+        this.minuteElement.innerText = minutes;
+        this.secondElement.innerText = seconds;
+
+        console.log("Days: ", days, " Hours: ", hours)
+
+        if (t < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerText = "TIME UP";
+          this.dayElement.innerText = '0';
+          this.hourElement.innerText = '0';
+          this.minuteElement.innerText = '0';
+          this.secondElement.innerText = '0';
+        }
+      }
+
+      myFunction = () => {
+
+        console.log("This:", this)
+        console.log(this.dayElement)
+
+        let deadline = new Date(this.date).getTime();
+        console.log(deadline)
+
+        let x = setInterval(this.timerFunction, 1000);
+      }
+
+    }
+
+    function main() {
+      let b = prompt("Please enter the date of your event")
+      a = new deadline(b)
+      a.myFunction();
+    }   
+   
             </script>
         </body>
 </html>
