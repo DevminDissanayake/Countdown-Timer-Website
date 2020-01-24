@@ -6,7 +6,7 @@
         </head>
         <body>
             <h1>Countdown Clock</h1> 
-            <button class="newDate">New Countdown</button>
+            <button onclick="myFunction()">New Countdown</button>
            
             <br>
             <br>
@@ -34,23 +34,16 @@
             
             <script>
             
-            class newDate {
-                constructor(date){
-                    this.date = date;
+           
+           function myFunction(){
 
-                }
-
-                var newDate1 = prompt("Please Enter The Date of Your Event")
-                newDate.date = new Date(date).getTime();  
-            
-            myFunction(){
-
-                
+            var date = prompt("Please Enter The Date of Your Event")
+                deadline = new Date(date).getTime(); 
   
                 var x = setInterval(function() { 
                     
                 var now = new Date().getTime(); 
-                var t = newDate.date - now; 
+                var t = deadline - now; 
                 var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
                 var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
                 var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
@@ -68,7 +61,7 @@
                         document.getElementById("second").innerHTML = '0'; } 
                 }, 1000); 
             }
-            }
+            
             </script>
         </body>
 </html>
